@@ -1,63 +1,74 @@
-🚀 MotorPH Payroll System
+# 🚀 MO-IT101-Group14 Payroll System
 
-MO-IT101-Group14 | Codes | S1101👥 Team Members: Arellano, L., Castillo, D., Castillo, K.M., Ranay, D.
+**Author:** MO-IT101-Group14 | Codes | S1101  
+👨‍💻 **Developers:** Arellano, L., Castillo, D., Castillo, K.M., Ranay, D.
 
-📌 What We Need
+---
 
-Our goal is to develop an end-to-end Payroll System to manage products, employee details, and salary computation. The system will be built in phases, gradually expanding functionalities over time.
+## 📌 What We Need
 
-📅 Phase 1 - Initial Implementation
+Our end goal is to have an **end-to-end payroll system** to manage our products, employee details, and salary.  
+We are building this system in **phases**, expanding the requirements **every few months**.
 
-🔹 Our first requirement is a basic payroll system that:✅ Presents employee details in the prescribed format (ID, Name, Birthday).✅ Computes weekly hours worked per employee.✅ Calculates gross salary based on hours worked.✅ Computes net salary after applying basic deductions.
+---
 
-📜 PHASE 1 TASKS
+## 🏗️ Phase 1: Initial System Requirements
 
-📌 Week 4: Visualization of application requirements📌 Week 5: Employee details presentation📌 Week 6: Hours worked calculation📌 Week 7: Gross wage calculation📌 Week 8: Net wage calculation📌 Week 9-10: Testing and revision📌 Week 11: Final submission
+### ✅ **PHASE 1 TASKS**
+- 🎨 **Visualize and present** what the application will look like.
+- 📋 **Display employee details** (Employee ID, Name, Birthday, etc.).
+- ⏳ **Calculate weekly hours worked** per employee.
+- 💰 **Compute Gross & Net Salary** with automatic deductions.
 
-🗂 Employee Database 📊
+### 🗓️ **PHASE 1 TIMELINE**
+| Week | Task |
+|------|-------------------------------|
+| **4** | Visualization of requirements |
+| **5** | Employee details presentation |
+| **6** | Hours worked calculation |
+| **7** | Gross wage calculation |
+| **8** | Net wage calculation |
+| **9-10** | Testing and revision |
+| **11** | Submission of final output |
 
-Our employee database is maintained in Google Sheets.
+---
 
-Initial employee log-in/log-out records are available.
+## 📂 Employee Database
+📌 We have stored our employee records in **Google Sheets** for easy access.
 
-Grace period: Employees logging in after 8:11 AM incur salary deductions.
+📋 **Key Employee Rules:**
+- Employees have a **10-minute grace period** for late arrivals.
+- **Salary deductions** apply if they log in at **8:11 AM or later**.
 
-📌 Access Employee Database ➜ (Google Sheets Link)
+---
 
-💰 Salary Deductions & Contributions 📉
+## 📉 Salary Deductions
+💸 **In compliance with BIR & DOLE,** we apply government-mandated deductions:
 
-As per BIR & DOLE regulations, we apply the following mandatory deductions:
+| Deduction | Type |
+|-----------|------|
+| 🏦 **SSS** | Social Security |
+| 🏥 **PhilHealth** | Health Insurance |
+| 🏡 **Pag-IBIG** | Housing Fund |
+| 🏛 **Withholding Tax** | Income Tax |
 
-🔹 SSS – Social Security System🔹 PhilHealth – Health Insurance🔹 Pag-IBIG – Housing Fund Contribution🔹 Withholding Tax – Based on employee salary brackets
+> ⚠️ **Note:** The numbers in our calculation may not reflect actual rates.
 
-📌 Access Deduction Matrix ➜ (Google Sheets Link)
+---
 
-⚠️ Note: The provided numbers are simplified and may not reflect actual/current rates.
+## 📌 Contribution Matrices
+🔹 **SSS, PhilHealth, Pag-IBIG, and Tax Contribution Charts** are available [here](#) _(Add actual links)_
 
-📖 How to Contribute 🤝
+---
 
-1️⃣ Clone the repository:
-
- git clone https://github.com/hybridseek/MO-IT101-Group14.git
-
-2️⃣ Create a new branch:
-
- git checkout -b feature-branch-name
-
-3️⃣ Commit changes & push:
-
- git add .
- git commit -m "Added new feature"
- git push origin feature-branch-name
-
-4️⃣ Create a pull request on GitHub.
-
-👨‍💻 Tech Stack
-
-🟢 Java (JDK 23)🟢 NetBeans (Java Ant)🟢 GitHub (Version Control)🟢 CSV Files (Employee & Payroll Data)
+## 🚀 How to Run the Project
+1. Clone the repository:  
+   ```sh
+   git clone https://github.com/hybridseek/MO-IT101-Group14.git
+2. Open in NetBeans and build the project.
+3. Ensure dependencies are installed.
+4. Run the payroll system
 
 📬 Contact & Support
+📧 Need help? Contact MO-IT101-Group14 or raise an issue.
 
-📧 Email: deomranay@gmail.com🔗 GitHub: @hybridseek
-
-🚀 Let's build an efficient payroll system together!
