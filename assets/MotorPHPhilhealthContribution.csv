@@ -1,0 +1,4 @@
+PHIC Code,Monthly Basic Salary From,Monthly Basic Salary To,Premium Rate
+30001,1,"10,000",1.50%
+30002,"10,000.01","59,999.99",1.50%
+30003,"60,000","999,999,999.99",1.50%
