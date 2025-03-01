@@ -1,6 +1,6 @@
-# 🚀 MO-IT101-Group14 Payroll System
+# 🚀 MO-IT101-Group14 MotorPH Payroll System
 
-**Author:** MO-IT101-Group14 | Codes | S1101  
+👥 **Author:** MO-IT101-Group14 | Codes | S1101  
 👨‍💻 **Developers:** Arellano, L., Castillo, D., Castillo, K.M., Ranay, D.
 
 ---
@@ -34,11 +34,13 @@ We are building this system in **phases**, expanding the requirements **every fe
 ---
 
 ## 📂 Employee Database
-📌 We have stored our employee records in **Google Sheets** for easy access.
+📌 We have stored our employee records in **CSV File** for easy access.
 
 📋 **Key Employee Rules:**
 - Employees have a **10-minute grace period** for late arrivals.
 - **Salary deductions** apply if they log in at **8:11 AM or later**.
+- Lunch Break is not counted.
+- Employees with **late hours are not eligible for overtime pay**.
 
 ---
 
@@ -49,7 +51,7 @@ We are building this system in **phases**, expanding the requirements **every fe
 |-----------|------|
 | 🏦 **SSS** | Social Security |
 | 🏥 **PhilHealth** | Health Insurance |
-| 🏡 **Pag-IBIG** | Housing Fund |
+| 🏡 **Pag-IBIG** | Housing or Salary Fund |
 | 🏛 **Withholding Tax** | Income Tax |
 
 > ⚠️ **Note:** The numbers in our calculation may not reflect actual rates.
@@ -57,7 +59,7 @@ We are building this system in **phases**, expanding the requirements **every fe
 ---
 
 ## 📌 Contribution Matrices
-🔹 **SSS, PhilHealth, Pag-IBIG, and Tax Contribution Charts** are available [here](#) _(Add actual links)_
+🔹 **SSS, PhilHealth, Pag-IBIG, and Tax Contribution Charts** are available in the **CSV File**.
 
 ---
 
@@ -69,6 +71,8 @@ We are building this system in **phases**, expanding the requirements **every fe
 3. Ensure dependencies are installed.
 4. Run the payroll system
 
-📬 Contact & Support
-📧 Need help? Contact MO-IT101-Group14 or raise an issue.
+---
+
+## 📬 Contact & Support
+📧 Need help? Contact MO-IT101-Group14 for any queries.
 
