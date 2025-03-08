@@ -17,7 +17,7 @@ public class EmployeeDetails {
     private final String birthday;
     private final double monthlySalary;
     
-    // Dynamic benefit values read from CSV
+    // Benefit and rate fields (stored as Strings for now)
     private final String riceSubsidy;
     private final String phoneAllowance;
     private final String clothingAllowance;
@@ -29,9 +29,6 @@ public class EmployeeDetails {
         this.firstName = data[2].trim();
         this.birthday = data[3].trim();
         this.monthlySalary = parseAmount(data[13].trim());
-        // Mapping dynamic fields according to indices:
-        // Rice Subsidy from data[14], Phone Allowance from data[15],
-        // Clothing Allowance from data[16], Hourly Rate from data[18]
         this.riceSubsidy = data.length > 14 ? data[14].trim() : "0";
         this.phoneAllowance = data.length > 15 ? data[15].trim() : "0";
         this.clothingAllowance = data.length > 16 ? data[16].trim() : "0";

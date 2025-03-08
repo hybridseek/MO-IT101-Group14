@@ -11,9 +11,9 @@ package com.moit101group14.motorphpayrollsystem;
  **/
 
 public class SSSBracket {
-    public double compensationFrom;
-    public double compensationTo;
-    public double contribution;
+    private double compensationFrom;
+    private double compensationTo;
+    private double contribution;
     
     public SSSBracket(String[] parts) {
         this.compensationFrom = parseAmount(parts[1]);
@@ -31,6 +31,14 @@ public class SSSBracket {
             System.err.println("Error parsing amount in SSSBracket: " + amount);
             return 0.0;
         }
+    }
+    
+    public double getCompensationFrom() {
+        return compensationFrom;
+    }
+    
+    public double getCompensationTo() {
+        return compensationTo;
     }
     
     public double getContribution() {

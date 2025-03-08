@@ -35,34 +35,27 @@ public class DailySummary {
         LocalTime lunchEnd            = LocalTime.of(13, 0);
         LocalTime officialEnd         = LocalTime.of(17, 0);
         LocalTime gracePeriod         = LocalTime.of(8, 10);   // on-time if <= 8:10
-        LocalTime lateReference       = LocalTime.of(8, 1);    // late minutes are counted from 8:01
+        LocalTime lateReference       = LocalTime.of(8, 1);    // late minutes counted from 8:01
         
         LocalTime logIn  = record.getLogIn();
         LocalTime logOut = record.getLogOut();
         
-        // Determine effective start time for normal hours
-        // If employee logs in on or before 8:10, we count as if they started at 8:00.
-        // Otherwise, effective start is their actual logIn.
+        // Effective start time for normal hours
         LocalTime effectiveStart;
         if (logIn.compareTo(gracePeriod) <= 0) {
             effectiveStart = officialStart;
             lateMinutes = 0;
         } else {
             effectiveStart = logIn;
-            // Late minutes are computed from 8:01 to actual logIn time.
             lateMinutes = (int) Duration.between(lateReference, logIn).toMinutes();
         }
         
-        // Compute normal working hours (excluding lunch break)
-        // Morning session: from effectiveStart (if before 12:00) until 12:00.
+        // Compute normal working hours (excluding lunch)
         Duration morningDuration = Duration.ZERO;
         if (effectiveStart.isBefore(officialMorningEnd)) {
-            // If the effective start is after 12:00, morning duration remains zero.
-            LocalTime morningEnd = officialMorningEnd;
-            morningDuration = Duration.between(effectiveStart, morningEnd);
+            morningDuration = Duration.between(effectiveStart, officialMorningEnd);
         }
         
-        // Afternoon session: from 13:00 until the earlier of logOut and 17:00.
         Duration afternoonDuration = Duration.ZERO;
         if (logOut.isAfter(lunchEnd)) {
             LocalTime afternoonEnd = logOut.isAfter(officialEnd) ? officialEnd : logOut;
@@ -73,14 +66,14 @@ public class DailySummary {
         normalHours = (int) computedNormal.toHours();
         normalMinutes = computedNormal.toMinutesPart();
         
-        // Calculate undertime: if logOut is before officialEnd, the difference is undertime.
+        // Undertime: if logOut is before officialEnd
         if (logOut.isBefore(officialEnd)) {
             undertimeMinutes = (int) Duration.between(logOut, officialEnd).toMinutes();
         } else {
             undertimeMinutes = 0;
         }
         
-        // Calculate overtime: Only if employee is on time (logIn ≤ 8:10) and logs out after 17:00.
+        // Overtime: if on time and logs out after officialEnd
         if (logIn.compareTo(gracePeriod) <= 0 && logOut.isAfter(officialEnd)) {
             Duration overtimeDuration = Duration.between(officialEnd, logOut);
             overtimeHours = (int) overtimeDuration.toHours();

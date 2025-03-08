@@ -11,9 +11,9 @@ package com.moit101group14.motorphpayrollsystem;
  **/
 
 public class PagIBIGBracket {
-    public double salaryFrom;
-    public double salaryTo;
-    public double contributionRate;
+    private double salaryFrom;
+    private double salaryTo;
+    private double contributionRate;
     
     public PagIBIGBracket(String[] parts) {
         this.salaryFrom = parseAmount(parts[1]);
@@ -31,5 +31,17 @@ public class PagIBIGBracket {
             System.err.println("Error parsing amount in PagIBIGBracket: " + amount);
             return 0.0;
         }
+    }
+    
+    public double getSalaryFrom() {
+        return salaryFrom;
+    }
+    
+    public double getSalaryTo() {
+        return salaryTo;
+    }
+    
+    public double getContributionRate() {
+        return contributionRate;
     }
 }

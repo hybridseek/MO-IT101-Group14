@@ -11,11 +11,11 @@ package com.moit101group14.motorphpayrollsystem;
  **/
 
 public class TaxBracket {
-    public double salaryFrom;
-    public double salaryTo;
-    public double inExcessOf;
-    public double taxValue;
-    public double taxRate;
+    private double salaryFrom;
+    private double salaryTo;
+    private double inExcessOf;
+    private double taxValue;
+    private double taxRate;
     
     public TaxBracket(double salaryFrom, double salaryTo, double inExcessOf, double taxValue, double taxRate) {
         this.salaryFrom = salaryFrom;
@@ -23,5 +23,25 @@ public class TaxBracket {
         this.inExcessOf = inExcessOf;
         this.taxValue = taxValue;
         this.taxRate = taxRate;
+    }
+    
+    public double getSalaryFrom() {
+        return salaryFrom;
+    }
+    
+    public double getSalaryTo() {
+        return salaryTo;
+    }
+    
+    public double getInExcessOf() {
+        return inExcessOf;
+    }
+    
+    public double getTaxValue() {
+        return taxValue;
+    }
+    
+    public double getTaxRate() {
+        return taxRate;
     }
 }

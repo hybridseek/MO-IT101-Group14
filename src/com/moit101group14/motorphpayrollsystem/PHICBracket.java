@@ -11,8 +11,8 @@ package com.moit101group14.motorphpayrollsystem;
  **/
 
 public class PHICBracket {
-    public double compensationFrom;
-    public double compensationTo;
+    private double compensationFrom;
+    private double compensationTo;
     
     public PHICBracket(String[] parts) {
         this.compensationFrom = parseAmount(parts[1]);
@@ -29,5 +29,13 @@ public class PHICBracket {
             System.err.println("Error parsing amount in PHICBracket: " + amount);
             return 0.0;
         }
+    }
+    
+    public double getCompensationFrom() {
+        return compensationFrom;
+    }
+    
+    public double getCompensationTo() {
+        return compensationTo;
     }
 }
