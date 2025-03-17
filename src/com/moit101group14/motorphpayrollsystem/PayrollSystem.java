@@ -22,21 +22,24 @@ import java.util.*;
 
 public class PayrollSystem {
 
-    // File paths (update as needed)
-    private static final String EMPLOYEE_FILE = "/Users/mylife/NetBeansProjects/com.moit101group14.motorphpayrollsystem/assets/MotorPHEmployeeDetails.csv";
-    private static final String ATTENDANCE_FILE = "/Users/mylife/NetBeansProjects/com.moit101group14.motorphpayrollsystem/assets/MotorPHAttendanceRecord.csv";
-    private static final String TAX_BRACKET_FILE = "/Users/mylife/NetBeansProjects/com.moit101group14.motorphpayrollsystem/assets/MotorPHWithholdingTax.csv";
-    private static final String SSS_CONTRIBUTION_FILE = "/Users/mylife/NetBeansProjects/com.moit101group14.motorphpayrollsystem/assets/MotorPHSSSContribution.csv";
-    private static final String PHIC_CONTRIBUTION_FILE = "/Users/mylife/NetBeansProjects/com.moit101group14.motorphpayrollsystem/assets/MotorPHPhilhealthContribution.csv";
-    private static final String HDMF_CONTRIBUTION_FILE = "/Users/mylife/NetBeansProjects/com.moit101group14.motorphpayrollsystem/assets/MotorPHPagIBIGContribution.csv";
+    // File paths for employee-related data (update as needed)
+    // These are the locations of the CSV files containing essential employee details, attendance records, and various payroll-related contributions. 
+    private static final String EMPLOYEE_FILE = "/Users/leo/Desktop/ComProg1/MotorPHEmployeeDetails.csv";
+    private static final String ATTENDANCE_FILE = "/Users/leo/Desktop/ComProg1/MotorPHAttendanceRecord.csv";
+    private static final String TAX_BRACKET_FILE = "/Users/leo/Desktop/ComProg1/MotorPHWithholdingTax.csv";
+    private static final String SSS_CONTRIBUTION_FILE = "/Users/leo/Desktop/ComProg1/MotorPHSSSContribution.csv";
+    private static final String PHIC_CONTRIBUTION_FILE = "/Users/leo/Desktop/ComProg1/MotorPHPhilhealthContribution.csv";
+    private static final String HDMF_CONTRIBUTION_FILE = "/Users/leo/Desktop/ComProg1/MotorPHPagIBIGContribution.csv";
 
-    // Data storage
+    // Map and Lists to store various records and payroll-related data
     private static final Map<String, EmployeeDetails> employees = new TreeMap<>();
+    
     private static final List<AttendanceRecord> attendanceRecords = new ArrayList<>();
     private static final List<TaxBracket> taxBrackets = new ArrayList<>();
     private static final List<SSSBracket> sssBrackets = new ArrayList<>();
     private static final List<PHICBracket> philhealthBrackets = new ArrayList<>();
     private static final List<PagIBIGBracket> pagIBIGBrackets = new ArrayList<>();
+    
     private static final NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(new Locale("en", "PH"));
 
     // Release mode for benefits and deductions:
@@ -57,9 +60,7 @@ public class PayrollSystem {
         }
     }
 
-    //--------------------------------------------------------------------------
-    // Data Loading Methods
-    //--------------------------------------------------------------------------
+    // Loads all necessary data from CSV files into corresponding data structures
     private static void loadAllData() throws IOException {
         loadEmployees();
         loadAttendanceRecords();
@@ -131,9 +132,7 @@ public class PayrollSystem {
         }
     }
     
-    //--------------------------------------------------------------------------
-    // Helper: Compute Last Working Day of Fourth Week
-    //--------------------------------------------------------------------------
+    // Determines the last working day (Friday) of the fourth week in a given month.
     private static LocalDate getLastWorkingDayOfFourthWeek(LocalDate anyDateInMonth) {
         LocalDate firstDay = anyDateInMonth.withDayOfMonth(1);
         LocalDate firstMonday = firstDay.with(TemporalAdjusters.nextOrSame(DayOfWeek.MONDAY));
@@ -149,9 +148,12 @@ public class PayrollSystem {
         return fourthWeekFriday;
     }
     
-    //--------------------------------------------------------------------------
-    // Pre-Aggregate Monthly Deduction Totals
-    //--------------------------------------------------------------------------
+    /**
+    * Computes monthly deduction totals per employee, grouped by month (MM/YYYY).  
+    * - Filters records within the first four weeks of each month.  
+    * - Aggregates deductions and normalizes totals.  
+    * @return Sorted map of employees with their monthly deduction totals.  
+    */
     private static Map<String, Map<String, MonthlyTotals>> getMonthlyDeductionTotals() {
         Map<String, Map<String, MonthlyTotals>> monthlyMap = new TreeMap<>();
         DateTimeFormatter monthFormatter = DateTimeFormatter.ofPattern("MM/yyyy");
@@ -175,9 +177,12 @@ public class PayrollSystem {
         return monthlyMap;
     }
     
-    //--------------------------------------------------------------------------
-    // Process Weekly Records (Grouping by Employee and Week)
-    //--------------------------------------------------------------------------
+    /**
+    * Processes weekly attendance records per employee, grouped by Monday–Friday weeks.  
+    * - Determines the start (Monday) and end (Friday) of the week for each record.  
+    * - Aggregates records by employee and week.  
+    * @return Sorted map of employees with their weekly totals.  
+    */
     private static Map<String, Map<String, WeeklyTotals>> processWeeklyRecords() {
         Map<String, Map<String, WeeklyTotals>> weeklyData = new TreeMap<>();
         DateTimeFormatter weekFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
@@ -195,9 +200,13 @@ public class PayrollSystem {
         return weeklyData;
     }
     
-    //--------------------------------------------------------------------------
-    // Generate Weekly Report Sorted by Week then Employee Number
-    //--------------------------------------------------------------------------
+    /**
+    * Generates and prints a weekly payroll report sorted by week.  
+    * - Aggregates weekly work hours, benefits, and deductions per employee.  
+    * - Determines net pay based on gross salary, benefits, and deductions.  
+    * - Supports multiple release modes for benefits distribution.  
+    *  - Formats and prints a structured report for each employee.  
+    */ 
     private static void generateWeeklyReportSortedByWeek(Map<String, Map<String, WeeklyTotals>> weeklyData,
                                                          Map<String, Map<String, MonthlyTotals>> monthlyDeductionMap) {
         DateTimeFormatter weekFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
@@ -321,9 +330,17 @@ public class PayrollSystem {
                 System.out.println();
                 // Display total hours worked
                 double totalHours = entry.getNormalHours() + entry.getOvertimeHours();
-                System.out.println("Hours Worked: " + String.format("%.2f", totalHours) 
+                
+                /*System.out.println("Hours Worked: " + String.format("%.2f", totalHours) 
                         + " // Normal Hours: " + String.format("%.2f", entry.getNormalHours()) 
-                        + ", Overtime Hours: " + String.format("%.2f", entry.getOvertimeHours()));
+                        + ", Overtime Hours: " + String.format("%.2f", entry.getOvertimeHours()));*/
+                
+                //testing new display total hours work
+                //display in hours + minutes
+                System.out.println("Hours Worked: " + formatHoursAndMinutes(totalHours)
+                         + " // Normal Hours: " + formatHoursAndMinutes(entry.getNormalHours())
+                         + ", Overtime Hours: " + formatHoursAndMinutes(entry.getOvertimeHours()));
+                
                 System.out.println("Gross Salary: " + currencyFormatter.format(entry.getGrossSalary()));
                 System.out.println();
                 System.out.println("Benefits:");
@@ -352,9 +369,15 @@ public class PayrollSystem {
         return ((date.getDayOfMonth() - 1) / 7) + 1;
     }
     
-    //--------------------------------------------------------------------------
-    // Process Monthly Records and Print Monthly Report
-    //--------------------------------------------------------------------------
+    /**
+    * Processes and prints monthly payroll records for each employee.  
+    * - Aggregates work hours, benefits, and deductions per month.  
+    * - Computes gross salary, applicable deductions, and net pay.  
+    * - Differentiates full attendance from deduction-based calculations.  
+    *  
+    * Outputs a structured payroll report detailing attendance, benefits,  
+    * deductions, and final net pay for each employee.  
+    */
     private static void processMonthlyRecords() {
         DateTimeFormatter monthFormatter = DateTimeFormatter.ofPattern("MM/yyyy");
         Map<String, Map<String, MonthlyTotals>> monthlyData = new TreeMap<>();
@@ -441,9 +464,8 @@ public class PayrollSystem {
         }
     }
     
-    //--------------------------------------------------------------------------
-    // Utility Methods
-    //--------------------------------------------------------------------------
+    //Utility methods for parsing and formatting numerical values.
+    //Converts a numeric string to double, handling commas and quotes.
     private static double parseDouble(String value) {
         if (value == null || value.trim().isEmpty()) return 0.0;
         try {
@@ -454,7 +476,7 @@ public class PayrollSystem {
             return 0.0;
         }
     }
-    
+    //Parses amounts, returning 0.0 for invalid inputs.
     private static double parseAmount(String amount) {
         if (amount == null || amount.isEmpty() || amount.equalsIgnoreCase("N/A"))
             return 0.0;
@@ -465,7 +487,7 @@ public class PayrollSystem {
             return 0.0;
         }
     }
-    
+    //Converts percentage strings to decimal values.
     private static double parsePercentage(String percentage) {
         try {
             NumberFormat percentFormat = NumberFormat.getPercentInstance();
@@ -476,10 +498,27 @@ public class PayrollSystem {
             return 0.0;
         }
     }
+    //Formats hours into "X hours and Y minutes
+    private static String formatHoursAndMinutes(double hours) {
+    int wholeHours = (int) hours;
+    int minutes = (int) Math.round((hours - wholeHours) * 60);
     
-    //--------------------------------------------------------------------------
-    // Deduction Calculation Methods
-    //--------------------------------------------------------------------------
+    // Handle case where minutes round up to 60
+    if (minutes == 60) {
+        wholeHours++;
+        minutes = 0;
+    }
+    
+    return wholeHours + " hours and " + minutes + " minutes";
+    }
+    
+    /**
+    * Deduction Calculation Methods
+    * SSS: Based on compensation brackets defined in SSSBracket class
+    * PhilHealth: 1.5% of monthly salary (minimum ₱150, maximum ₱900)
+    * Pag-IBIG: Standard ₱100 contribution
+    * Withholding Tax: Progressive tax based on taxable income (salary minus contributions)
+    */
     private static double calculateSSSDeduction(double salary, List<SSSBracket> brackets) {
         return findBracketAndApply(salary, brackets, SSSBracket::getContribution, "SSS");
     }
@@ -513,7 +552,7 @@ public class PayrollSystem {
         }
         return 0.0;
     }
-    
+    //Checks if a given salary falls within the range of a specified bracket.  
     private static <T> boolean isSalaryInRange(double salary, T bracket) {
         if (bracket instanceof SSSBracket) {
             SSSBracket sss = (SSSBracket) bracket;
@@ -541,9 +580,7 @@ public class PayrollSystem {
         T load(String[] parts);
     }
     
-    //--------------------------------------------------------------------------
-    // Inner Helper Classes for Aggregating Totals and Report Data
-    //--------------------------------------------------------------------------
+    //Aggregates normal, overtime, late, and undertime hours for a week.
     private static class WeeklyTotals {
         int normalHours = 0;
         int normalMinutes = 0;
@@ -570,7 +607,7 @@ public class PayrollSystem {
             overtimeMinutes %= 60;
         }
     }
-    
+    //Tracks full-month and deduction-based attendance totals.  
     private static class MonthlyTotals {
         int normalHoursFull = 0;
         int normalMinutesFull = 0;
@@ -604,7 +641,9 @@ public class PayrollSystem {
             overtimeHoursDeduction += daily.getOvertimeHours();
             overtimeMinutesDeduction += daily.getOvertimeMinutes();
         }
-        
+    
+        // Normalize hours: Convert excess minutes to hours
+        // Example: 65 minutes becomes 1 hour and 5 minutes
         void normalize() {
             normalHoursFull += normalMinutesFull / 60;
             normalMinutesFull %= 60;
@@ -639,6 +678,8 @@ public class PayrollSystem {
         private final double normalHours;
         private final double overtimeHours;
         
+        //WeeklyReportEntry: Represents an employee's weekly payroll details, including earnings, 
+        //benefits. deductions, and work hours. Stores key financial and attendance daa for reporting.
         public WeeklyReportEntry(EmployeeDetails employee, String weekKey, double weeklyWorkValue, double totalBenefits,
                                  double sssDeduction, double philhealthDeduction, double pagibigDeduction,
                                  double withholdingTax, double totalDeductions, double grossSalary, double netPay,
@@ -662,6 +703,8 @@ public class PayrollSystem {
             this.overtimeHours = overtimeHours;
         }
         
+        //Getter methods for accessing individual properties of a WeelyRerportEntry
+        //Provides access to employee details, weekly work values, deductions, benefits, and hours worked.
         public EmployeeDetails getEmployee() { return employee; }
         public String getWeekKey() { return weekKey; }
         public double getWeeklyWorkValue() { return weeklyWorkValue; }
