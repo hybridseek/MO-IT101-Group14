@@ -228,23 +228,28 @@ public class PayrollSystem {
                 totals.normalize();
                 double hourlyRate = parseDouble(emp.getHourlyRate());
                 
-                double normalHours = totals.normalHours + totals.normalMinutes / 60.0;
-                double overtimeHours = totals.overtimeHours + totals.overtimeMinutes / 60.0;
+                double normalHours = Math.round((totals.normalHours + totals.normalMinutes / 60.0) * 100.0) / 100.0;
+                double overtimeHours = Math.round((totals.overtimeHours + totals.overtimeMinutes / 60.0) * 100.0) / 100.0;
                 double weeklyNormalValue = normalHours * hourlyRate;
                 double weeklyOvertimeValue = overtimeHours * hourlyRate * 1.25;
                 double weeklyWorkValue = weeklyNormalValue + weeklyOvertimeValue;
-                
+                 
                 LocalDate monthStart = weekStart.withDayOfMonth(1);
                 LocalDate cutoff = getLastWorkingDayOfFourthWeek(monthStart);
                 boolean isFourthWeek = weekEnd.equals(cutoff);
                 
-                // Benefit release logic
+                /** calculates employee benefits based on the configured release mode:
+                * - Mode 1: Full benefits on the 4th week of the month, otherwise zero
+                * - Mode 2: Half benefits on the 2nd and 4th weeks, otherwise zero
+                *  Other modes: Full benefits every week    
+                *  Benefits include rice subsidy, phone allowance, and clothing allowance
+                */
                 double riceSubsidy, phoneAllowance, clothingAllowance, totalBenefits;
                 if (RELEASE_MODE == 1) {
                     if (isFourthWeek) {
-                        riceSubsidy = parseDouble(emp.getRiceSubsidy());
-                        phoneAllowance = parseDouble(emp.getPhoneAllowance());
-                        clothingAllowance = parseDouble(emp.getClothingAllowance());
+                        riceSubsidy = Math.round(parseDouble(emp.getRiceSubsidy()) * 100.0) / 100.0;
+                        phoneAllowance = Math.round(parseDouble(emp.getPhoneAllowance()) * 100.0) / 100.0;
+                        clothingAllowance = Math.round(parseDouble(emp.getClothingAllowance()) * 100.0) / 100.0;
                     } else {
                         riceSubsidy = 0.0;
                         phoneAllowance = 0.0;
@@ -263,12 +268,23 @@ public class PayrollSystem {
                         clothingAllowance = 0.0;
                     }
                 } else {
-                    riceSubsidy = parseDouble(emp.getRiceSubsidy());
-                    phoneAllowance = parseDouble(emp.getPhoneAllowance());
-                    clothingAllowance = parseDouble(emp.getClothingAllowance());
+                    riceSubsidy = Math.round(parseDouble(emp.getRiceSubsidy()) * 100.0) / 100.0;
+                    phoneAllowance = Math.round(parseDouble(emp.getPhoneAllowance()) * 100.0) / 100.0;
+                    clothingAllowance = Math.round(parseDouble(emp.getClothingAllowance()) * 100.0) / 100.0;
                 }
-                totalBenefits = riceSubsidy + phoneAllowance + clothingAllowance;
+                totalBenefits = Math.round((riceSubsidy + phoneAllowance + clothingAllowance) * 100.0) / 100.0;
                 
+                /**
+                * Calculates mandatory government deductions for employees on the fourth week of the month
+                * Process:
+                * 1. Retrieves or creates monthly totals for employee using employee number and month/year
+                * 2. Calculates effective hours worked (normalizing minutes into hours)
+                * 3. Computes SSS, PhilHealth, and Pag-IBIG contributions based on applicable brackets
+                * 4. Calculates withholding tax on taxable income (monthly salary minus government contributions)
+                * 5. Determines final gross salary, total deductions, and net pay
+                * 
+                * Deductions are only applied on the fourth week of each month.
+                */
                 double sssDeduction = 0.0, philhealthDeduction = 0.0, pagibigDeduction = 0.0, withholdingTax = 0.0, totalDeductions = 0.0;
                 if (isFourthWeek) {
                     DateTimeFormatter monthFormatter = DateTimeFormatter.ofPattern("MM/yyyy");
@@ -280,14 +296,14 @@ public class PayrollSystem {
                     if (deductionTotals == null) {
                         deductionTotals = new MonthlyTotals();
                     }
-                    double normalHoursDeduction = deductionTotals.normalHoursDeduction + deductionTotals.normalMinutesDeduction / 60.0;
-                    double overtimeHoursDeduction = deductionTotals.overtimeHoursDeduction + deductionTotals.overtimeMinutesDeduction / 60.0;
+                    double normalHoursDeduction = Math.round((deductionTotals.normalHoursDeduction + deductionTotals.normalMinutesDeduction / 60.0) * 100.0) / 100.0;
+                    double overtimeHoursDeduction = Math.round((deductionTotals.overtimeHoursDeduction + deductionTotals.overtimeMinutesDeduction / 60.0) * 100.0) / 100.0;
                     double deductionBasisValue = (normalHoursDeduction * hourlyRate)
                             + (overtimeHoursDeduction * hourlyRate * 1.25);
                     
-                    sssDeduction = calculateSSSDeduction(deductionBasisValue, sssBrackets);
-                    philhealthDeduction = calculatePHICDeduction(deductionBasisValue, philhealthBrackets);
-                    pagibigDeduction = calculatePagIBIGDeduction(deductionBasisValue, pagIBIGBrackets);
+                    sssDeduction = Math.round(calculateSSSDeduction(deductionBasisValue, sssBrackets) * 100.0) / 100.0;
+                    philhealthDeduction = Math.round(calculatePHICDeduction(deductionBasisValue, philhealthBrackets) * 100.0) / 100.0;
+                    pagibigDeduction = Math.round(calculatePagIBIGDeduction(deductionBasisValue, pagIBIGBrackets) * 100.0) / 100.0;         
                     double totalDeductionsBeforeTax = sssDeduction + philhealthDeduction + pagibigDeduction;
                     double taxableIncome = emp.getMonthlySalary() - totalDeductionsBeforeTax;
                     withholdingTax = calculateWithholdingTax(taxableIncome, taxBrackets);
