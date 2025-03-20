@@ -10,32 +10,51 @@ package com.moit101group14.motorphpayrollsystem;
  * 
  **/
 
+/**
+ * Represents a PhilHealth (PHIC) contribution bracket.
+ * Each bracket defines the salary range and corresponding contribution amount.
+ */
 public class PHICBracket {
-    private double compensationFrom;
-    private double compensationTo;
-    
-    public PHICBracket(String[] parts) {
-        this.compensationFrom = parseAmount(parts[1]);
-        this.compensationTo = parseAmount(parts[2]);
+    private final double compensationFrom;
+    private final double compensationTo;
+    private final double contributionRate;
+
+    /**
+     * Constructs a PHICBracket object defining salary range and contribution details.
+     *
+     * @param compensationFrom The minimum salary for this bracket.
+     * @param compensationTo   The maximum salary for this bracket.
+     * @param contributionRate The PhilHealth contribution rate for this salary range.
+     */
+    public PHICBracket(double compensationFrom, double compensationTo, double contributionRate) {
+        this.compensationFrom = compensationFrom;
+        this.compensationTo = compensationTo;
+        this.contributionRate = contributionRate;
     }
-    
-    private double parseAmount(String amount) {
-        if (amount == null || amount.isEmpty() || amount.equalsIgnoreCase("N/A")) {
-            return 0.0;
-        }
-        try {
-            return Double.parseDouble(amount.replace(",", "").replace("\"", ""));
-        } catch (NumberFormatException e) {
-            System.err.println("Error parsing amount in PHICBracket: " + amount);
-            return 0.0;
-        }
-    }
-    
+
+    /** @return The lower bound of the salary range for this PhilHealth bracket. */
     public double getCompensationFrom() {
         return compensationFrom;
     }
-    
+
+    /** @return The upper bound of the salary range for this PhilHealth bracket. */
     public double getCompensationTo() {
         return compensationTo;
+    }
+
+    /** @return The contribution rate for this bracket. */
+    public double getContributionRate() {
+        return contributionRate;
+    }
+
+    /**
+     * Generates a formatted string representation of the PhilHealth bracket.
+     *
+     * @return A string describing the PhilHealth bracket details.
+     */
+    @Override
+    public String toString() {
+        return String.format("PhilHealth Bracket: Salary %.2f - %.2f | Contribution Rate: %.2f%%",
+                compensationFrom, compensationTo, contributionRate * 100);
     }
 }

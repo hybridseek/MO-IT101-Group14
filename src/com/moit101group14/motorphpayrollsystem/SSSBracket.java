@@ -10,38 +10,51 @@ package com.moit101group14.motorphpayrollsystem;
  * 
  **/
 
+/**
+ * Represents an SSS (Social Security System) contribution bracket.
+ * Each bracket defines the salary range and corresponding contribution amount.
+ */
 public class SSSBracket {
-    private double compensationFrom;
-    private double compensationTo;
-    private double contribution;
-    
-    public SSSBracket(String[] parts) {
-        this.compensationFrom = parseAmount(parts[1]);
-        this.compensationTo = parseAmount(parts[2]);
-        this.contribution = parseAmount(parts[3]);
+    private final double compensationFrom;
+    private final double compensationTo;
+    private final double contribution;
+
+    /**
+     * Constructs an SSSBracket object defining salary range and contribution details.
+     *
+     * @param compensationFrom The minimum salary for this bracket.
+     * @param compensationTo   The maximum salary for this bracket.
+     * @param contribution     The fixed SSS contribution for this salary range.
+     */
+    public SSSBracket(double compensationFrom, double compensationTo, double contribution) {
+        this.compensationFrom = compensationFrom;
+        this.compensationTo = compensationTo;
+        this.contribution = contribution;
     }
-    
-    private double parseAmount(String amount) {
-        if (amount == null || amount.isEmpty() || amount.equalsIgnoreCase("N/A")) {
-            return 0.0;
-        }
-        try {
-            return Double.parseDouble(amount.replace(",", "").replace("\"", ""));
-        } catch (NumberFormatException e) {
-            System.err.println("Error parsing amount in SSSBracket: " + amount);
-            return 0.0;
-        }
-    }
-    
+
+    /** @return The lower bound of the salary range for this SSS bracket. */
     public double getCompensationFrom() {
         return compensationFrom;
     }
-    
+
+    /** @return The upper bound of the salary range for this SSS bracket. */
     public double getCompensationTo() {
         return compensationTo;
     }
-    
+
+    /** @return The fixed contribution amount for this bracket. */
     public double getContribution() {
         return contribution;
+    }
+
+    /**
+     * Generates a formatted string representation of the SSS bracket.
+     *
+     * @return A string describing the SSS bracket details.
+     */
+    @Override
+    public String toString() {
+        return String.format("SSS Bracket: Salary %.2f - %.2f | Contribution: %.2f",
+                compensationFrom, compensationTo, contribution);
     }
 }

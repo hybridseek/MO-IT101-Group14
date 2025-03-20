@@ -10,38 +10,51 @@ package com.moit101group14.motorphpayrollsystem;
  * 
  **/
 
+/**
+ * Represents a Pag-IBIG (HDMF) contribution bracket.
+ * Each bracket defines the salary range and corresponding contribution amount.
+ */
 public class PagIBIGBracket {
-    private double salaryFrom;
-    private double salaryTo;
-    private double contributionRate;
-    
-    public PagIBIGBracket(String[] parts) {
-        this.salaryFrom = parseAmount(parts[1]);
-        this.salaryTo = parseAmount(parts[2]);
-        this.contributionRate = parseAmount(parts[3].replace("%", "")) / 100.0;
+    private final double compensationFrom;
+    private final double compensationTo;
+    private final double contribution;
+
+    /**
+     * Constructs a PagIBIGBracket object defining salary range and contribution details.
+     *
+     * @param compensationFrom   The minimum salary for this bracket.
+     * @param compensationTo     The maximum salary for this bracket.
+     * @param contribution The fixed Pag-IBIG contribution for this salary range.
+     */
+    public PagIBIGBracket(double compensationFrom, double compensationTo, double contribution) {
+        this.compensationFrom = compensationFrom;
+        this.compensationTo = compensationTo;
+        this.contribution = contribution;
     }
-    
-    private double parseAmount(String amount) {
-        if (amount == null || amount.isEmpty() || amount.equalsIgnoreCase("N/A")) {
-            return 0.0;
-        }
-        try {
-            return Double.parseDouble(amount.replace(",", "").replace("\"", ""));
-        } catch (NumberFormatException e) {
-            System.err.println("Error parsing amount in PagIBIGBracket: " + amount);
-            return 0.0;
-        }
+
+    /** @return The lower bound of the salary range for this Pag-IBIG bracket. */
+    public double getCompensationFrom() {
+        return compensationFrom;
     }
-    
-    public double getSalaryFrom() {
-        return salaryFrom;
+
+    /** @return The upper bound of the salary range for this Pag-IBIG bracket. */
+    public double getCompensationTo() {
+        return compensationTo;
     }
-    
-    public double getSalaryTo() {
-        return salaryTo;
+
+    /** @return The fixed contribution amount for this bracket. */
+    public double getContribution() {
+        return contribution;
     }
-    
-    public double getContributionRate() {
-        return contributionRate;
+
+    /**
+     * Generates a formatted string representation of the Pag-IBIG bracket.
+     *
+     * @return A string describing the Pag-IBIG bracket details.
+     */
+    @Override
+    public String toString() {
+        return String.format("Pag-IBIG Bracket: Salary %.2f - %.2f | Contribution: %.2f",
+                compensationFrom, compensationTo, contribution);
     }
 }

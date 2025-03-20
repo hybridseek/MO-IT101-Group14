@@ -10,76 +10,108 @@ package com.moit101group14.motorphpayrollsystem;
  * 
  **/
 
+/**
+ * Represents an employee's details, including personal information,
+ * salary, and allowances.
+ */
 public class EmployeeDetails {
     private final String employeeNumber;
-    private final String lastName;
     private final String firstName;
+    private final String lastName;
     private final String birthday;
+    private final double hourlyRate;
     private final double monthlySalary;
-    
-    // Benefit and rate fields (stored as Strings for now)
-    private final String riceSubsidy;
-    private final String phoneAllowance;
-    private final String clothingAllowance;
-    private final String hourlyRate;
-    
+    private final double riceSubsidy;
+    private final double phoneAllowance;
+    private final double clothingAllowance;
+
+    /**
+     * Constructs an EmployeeDetails object using an array of employee data.
+     *
+     * @param data An array containing employee details from a CSV file.
+     */
     public EmployeeDetails(String[] data) {
         this.employeeNumber = data[0].trim();
-        this.lastName = data[1].trim();
-        this.firstName = data[2].trim();
+        this.firstName = data[1].trim();
+        this.lastName = data[2].trim();
         this.birthday = data[3].trim();
-        this.monthlySalary = parseAmount(data[13].trim());
-        this.riceSubsidy = data.length > 14 ? data[14].trim() : "0";
-        this.phoneAllowance = data.length > 15 ? data[15].trim() : "0";
-        this.clothingAllowance = data.length > 16 ? data[16].trim() : "0";
-        this.hourlyRate = data.length > 18 ? data[18].trim() : "0";
+        this.monthlySalary = parseDouble(data[13]);
+        this.riceSubsidy = parseDouble(data[14]);
+        this.phoneAllowance = parseDouble(data[15]);
+        this.clothingAllowance = parseDouble(data[16]);
+        this.hourlyRate = parseDouble(data[18]);
     }
-    
-    private double parseAmount(String amount) {
-        if (amount == null || amount.isEmpty() || amount.equalsIgnoreCase("N/A")) {
-            return 0.0;
-        }
-        try {
-            return Double.parseDouble(amount.replace(",", "").replace("\"", ""));
-        } catch (NumberFormatException e) {
-            System.err.println("Error parsing amount: " + amount);
-            return 0.0;
-        }
-    }
-    
+
+    /** @return The unique employee number. */
     public String getEmployeeNumber() {
         return employeeNumber;
     }
-    
-    public String getLastName() {
-        return lastName;
-    }
-    
+
+    /** @return The first name of the employee. */
     public String getFirstName() {
         return firstName;
     }
-    
+
+    /** @return The last name of the employee. */
+    public String getLastName() {
+        return lastName;
+    }
+
+    /** @return The employee's date of birth. */
     public String getBirthday() {
         return birthday;
     }
-    
+
+    /** @return The hourly rate of the employee. */
+    public double getHourlyRate() {
+        return hourlyRate;
+    }
+
+    /** @return The employee's monthly salary. */
     public double getMonthlySalary() {
         return monthlySalary;
     }
-    
-    public String getRiceSubsidy() {
+
+    /** @return The employee's rice subsidy allowance. */
+    public double getRiceSubsidy() {
         return riceSubsidy;
     }
-    
-    public String getPhoneAllowance() {
+
+    /** @return The employee's phone allowance. */
+    public double getPhoneAllowance() {
         return phoneAllowance;
     }
-    
-    public String getClothingAllowance() {
+
+    /** @return The employee's clothing allowance. */
+    public double getClothingAllowance() {
         return clothingAllowance;
     }
-    
-    public String getHourlyRate() {
-        return hourlyRate;
+
+    /**
+     * Parses a string to a double safely, handling empty or invalid values.
+     *
+     * @param value The string representation of a numeric value.
+     * @return The parsed double value or 0.0 if invalid.
+     */
+    private double parseDouble(String value) {
+        if (value == null || value.trim().isEmpty()) {
+            return 0.0;
+        }
+        try {
+            return Double.parseDouble(value.replaceAll("[\",]", "").trim());
+        } catch (NumberFormatException e) {
+            return 0.0;
+        }
+    }
+
+    /**
+     * Generates a formatted string representation of the employee details.
+     *
+     * @return A string describing the employee's key details.
+     */
+    @Override
+    public String toString() {
+        return String.format("Employee: %s, %s (ID: %s) | Salary: %.2f | Hourly Rate: %.2f",
+                lastName, firstName, employeeNumber, monthlySalary, hourlyRate);
     }
 }
