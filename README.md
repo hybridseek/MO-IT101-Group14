@@ -29,10 +29,10 @@ We are building this system in **phases**, expanding the requirements **every fe
 ## 🏗️ Phase 1: Initial System Requirements  
 
 ### ✅ **PHASE 1 TASKS**  
-<p>🎨 **Visualize and present** what the application will look like.</p>
-<p>📋 **Display employee details** (Employee ID, Name, Birthday, etc.).</p>
-<p>⏳ **Calculate weekly hours worked** per employee.</p>
-<p>💰 **Compute Gross & Net Salary** with automatic deductions.</p>
+<p>🎨 <strong>Visualize and present</strong> what the application will look like.</p>
+<p>📋 <strong>Display employee details</strong> (Employee ID, Name, Birthday, etc.).</p>
+<p>⏳ <strong>Calculate weekly hours worked</strong> per employee.</p>
+<p>💰 <strong>Compute Gross & Net Salary</strong> with automatic deductions.</p>
     
 ---
 
@@ -78,10 +78,10 @@ We are building this system in **phases**, expanding the requirements **every fe
 📌 We have stored our employee records in **CSV File** for easy access.  
 
 📋 **Key Employee Rules:**  
-<p>Employees have a **10-minute grace period** for late arrivals.</p>
-<p>**Salary deductions** apply if they log in at **8:11 AM or later**.</p>
+<p>Employees have a <strong>10-minute grace period</strong> for late arrivals.</p>
+<p><strong>Salary deductions</strong> apply if they log in at <strong>8:11 AM or later</strong>.</p>
 <p>Lunch Break is not counted.</p>
-<p>Employees with **late hours are not eligible for overtime pay**.</p>  
+<p>Employees with <strong>late hours are not eligible for overtime pay</strong>.</p>  
 
 ---
 
