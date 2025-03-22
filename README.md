@@ -134,4 +134,8 @@ git clone https://github.com/hybridseek/MO-IT101-Group14.git
 📬 Contact & Support
 📧 Need help? Contact MO-IT101-Group14 for any queries.
 
+---
+
+MO-IT101-Group14 | Codes | S1101 © 2025 Arellano, L., Castillo, D., Castillo, K.M., Ranay, D. | All Rights Reserved.
+
 </div>
