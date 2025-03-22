@@ -125,7 +125,8 @@ Clone the repository:
 <center>
   ```bash
   git clone https://github.com/hybridseek/MO-IT101-Group14.git
-</center> ```
+  ```
+</center>
 <p>Open in NetBeans and build the project.</p>
 <p>Ensure dependencies are installed.</p>
 <p>Run the payroll system.</p>
