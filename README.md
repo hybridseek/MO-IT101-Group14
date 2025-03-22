@@ -122,13 +122,10 @@ We are building this system in **phases**, expanding the requirements **every fe
 
 ## 🚀 How to Run the Project  
 Clone the repository:
-<div style="display: flex; justify-content: center;">
-  <pre>
-    <code>
-git clone https://github.com/hybridseek/MO-IT101-Group14.git
-    </code>
-  </pre>
-</div>
+<center>
+  ```bash
+  git clone https://github.com/hybridseek/MO-IT101-Group14.git
+</center> ```
 <p>Open in NetBeans and build the project.</p>
 <p>Ensure dependencies are installed.</p>
 <p>Run the payroll system.</p>
