@@ -1,78 +1,137 @@
-# 🚀 MO-IT101-Group14 MotorPH Payroll System
+<h1 align="center">
+  <a href="https://metalpulz.com"><img src="https://www.svgrepo.com/show/65722/dollar-coins-stack.svg" alt="hybridSeek" width="200"></a>
+  <br>
+  🚀 MO-IT101-Group14 MotorPH Payroll System
+  <br>
+  <br>
+</h1>
 
-👥 **Author:** MO-IT101-Group14 | Codes | S1101  
-👨‍💻 **Developers:** Arellano, L., Castillo, D., Castillo, K.M., Ranay, D.
+<p align="center">
+  <a href="https://netbeans.apache.org/"><img src="https://img.shields.io/badge/NetBeans-1B6AC6?logo=apache-netbeans&logoColor=white" alt="NetBeans"></a>
+  <a href="https://www.oracle.com/java/"><img src="https://img.shields.io/badge/Java-23-blue?logo=java" alt="Java"></a>
+</p>
+
+<p align="center">
+  👥 <strong>Author:</strong> MO-IT101-Group14 | Codes | S1101<br>
+  👨‍💻 <strong>Developers:</strong> Arellano, L., Castillo, D., Castillo, K.M., Ranay, D.
+</p>
 
 ---
 
-## 📌 What We Need
+<div align="center">
 
+## 📌 What We Need  
 Our end goal is to have an **end-to-end payroll system** to manage our products, employee details, and salary.  
 We are building this system in **phases**, expanding the requirements **every few months**.
 
 ---
 
-## 🏗️ Phase 1: Initial System Requirements
+## 🏗️ Phase 1: Initial System Requirements  
 
-### ✅ **PHASE 1 TASKS**
-- 🎨 **Visualize and present** what the application will look like.
-- 📋 **Display employee details** (Employee ID, Name, Birthday, etc.).
-- ⏳ **Calculate weekly hours worked** per employee.
-- 💰 **Compute Gross & Net Salary** with automatic deductions.
+### ✅ **PHASE 1 TASKS**  
+<p>🎨 **Visualize and present** what the application will look like.</p>
+<p>📋 **Display employee details** (Employee ID, Name, Birthday, etc.).</p>
+<p>⏳ **Calculate weekly hours worked** per employee.</p>
+<p>💰 **Compute Gross & Net Salary** with automatic deductions.</p>
+    
+---
 
 ### 🗓️ **PHASE 1 TIMELINE**
-| Week | Task |
-|------|-------------------------------|
-| **4** | Visualization of requirements |
-| **5** | Employee details presentation |
-| **6** | Hours worked calculation |
-| **7** | Gross wage calculation |
-| **8** | Net wage calculation |
-| **9-10** | Testing and revision |
-| **11** | Submission of final output |
+<table align="center">
+  <tr>
+    <th>Week</th>
+    <th>Task</th>
+  </tr>
+  <tr>
+    <td><b>4</b></td>
+    <td>Visualization of requirements</td>
+  </tr>
+  <tr>
+    <td><b>5</b></td>
+    <td>Employee details presentation</td>
+  </tr>
+  <tr>
+    <td><b>6</b></td>
+    <td>Hours worked calculation</td>
+  </tr>
+  <tr>
+    <td><b>7</b></td>
+    <td>Gross wage calculation</td>
+  </tr>
+  <tr>
+    <td><b>8</b></td>
+    <td>Net wage calculation</td>
+  </tr>
+  <tr>
+    <td><b>9-10</b></td>
+    <td>Testing and revision</td>
+  </tr>
+  <tr>
+    <td><b>11</b></td>
+    <td>Submission of final output</td>
+  </tr>
+</table>
 
 ---
 
 ## 📂 Employee Database
-📌 We have stored our employee records in **CSV File** for easy access.
+📌 We have stored our employee records in **CSV File** for easy access.  
 
-📋 **Key Employee Rules:**
-- Employees have a **10-minute grace period** for late arrivals.
-- **Salary deductions** apply if they log in at **8:11 AM or later**.
-- Lunch Break is not counted.
-- Employees with **late hours are not eligible for overtime pay**.
+📋 **Key Employee Rules:**  
+<p>Employees have a **10-minute grace period** for late arrivals.</p>
+<p>**Salary deductions** apply if they log in at **8:11 AM or later**.</p>
+<p>Lunch Break is not counted.</p>
+<p>Employees with **late hours are not eligible for overtime pay**.</p>  
 
 ---
 
-## 📉 Salary Deductions
+## 📉 Salary Deductions  
 💸 **In compliance with BIR & DOLE,** we apply government-mandated deductions:
 
-| Deduction | Type |
-|-----------|------|
-| 🏦 **SSS** | Social Security |
-| 🏥 **PhilHealth** | Health Insurance |
-| 🏡 **Pag-IBIG** | Housing or Salary Fund |
-| 🏛 **Withholding Tax** | Income Tax |
+<table align="center">
+  <tr>
+    <th>Deduction</th>
+    <th>Type</th>
+  </tr>
+  <tr>
+    <td>🏦 <b>SSS</b></td>
+    <td>Social Security</td>
+  </tr>
+  <tr>
+    <td>🏥 <b>PhilHealth</b></td>
+    <td>Health Insurance</td>
+  </tr>
+  <tr>
+    <td>🏡 <b>Pag-IBIG</b></td>
+    <td>Housing or Salary Fund</td>
+  </tr>
+  <tr>
+    <td>🏛 <b>Withholding Tax</b></td>
+    <td>Income Tax</td>
+  </tr>
+</table>
 
-> ⚠️ **Note:** The numbers in our calculation may not reflect actual rates.
+⚠️ **Note:** The numbers in our calculation may not reflect actual rates.
 
 ---
 
-## 📌 Contribution Matrices
+## 📌 Contribution Matrices  
 🔹 **SSS, PhilHealth, Pag-IBIG, and Tax Contribution Charts** are available in the **CSV File**.
 
 ---
 
-## 🚀 How to Run the Project
-1. Clone the repository:  
-   ```sh
-   git clone https://github.com/hybridseek/MO-IT101-Group14.git
-2. Open in NetBeans and build the project.
-3. Ensure dependencies are installed.
-4. Run the payroll system
+## 🚀 How to Run the Project  
+Clone the repository:  
+```sh
+git clone https://github.com/hybridseek/MO-IT101-Group14.git
+```
+<p>Open in NetBeans and build the project.</p>
+<p>Ensure dependencies are installed.</p>
+<p>Run the payroll system.</p>
 
 ---
 
-## 📬 Contact & Support
+📬 Contact & Support
 📧 Need help? Contact MO-IT101-Group14 for any queries.
 
+</div>
