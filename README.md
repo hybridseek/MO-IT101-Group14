@@ -120,6 +120,17 @@ We are building this system in **phases**, expanding the requirements **every fe
 
 ---
 
+## 📂 Project Documentation  
+
+All project planning, requirements, and estimations are stored in the `docs/` folder:  
+
+- 📋 [Project Plan](docs/Project Plan.csv)  
+- 📊 [Requirements & Estimations](docs/Requirements & Estimations.csv)  
+
+For further details on the development process, check the [CHANGELOG.md](CHANGELOG.md).
+
+---
+
 ## 🚀 How to Run the Project  
 Clone the repository:
 `git clone https://github.com/hybridseek/MO-IT101-Group14.git`
