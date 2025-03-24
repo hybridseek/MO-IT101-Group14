@@ -124,9 +124,9 @@ We are building this system in **phases**, expanding the requirements **every fe
 
 All project planning, requirements, and estimations are stored in the `docs/` folder:
 
-- 📜 [Project Plan](docs/ProjectPlan.md)  
-- 📋 [Requirements](docs/Requirements.md)  
-- 📊 [Estimate](docs/Estimate.md)  
+📜 [Project Plan](docs/ProjectPlan.md)  
+📋 [Requirements](docs/Requirements.md)  
+📊 [Estimate](docs/Estimate.md)  
 
 For further details on the development process, check the [CHANGELOG.md](CHANGELOG.md).
 
